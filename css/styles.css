@@ -1,13 +1,13 @@
-
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
 /*logo*/
-.logo{
+.logo {
     width: 90px;
 }
+
 .texto-logo {
     font-size: 40px;
     color: white;
@@ -28,10 +28,11 @@
     position: relative;
     margin-bottom: 4rem;
 }
-    
+
 #myCarousel {
-    background-color: rgb(119,119 ,119);
+    background-color: rgb(119, 119, 119);
 }
+
 .carousel-caption {
     position: absolute;
     right: 15%;
@@ -42,19 +43,23 @@
     color: #fff;
     text-align: left;
 }
+
 .imgc {
     height: 80vh;
     display: flex;
     margin: 0 auto;
 }
+
 /* estilos del body */
-.fondo-rojo{
+.fondo-rojo {
     background-color: #880000;
 }
-.fondo-azul{
+
+.fondo-azul {
     background-color: #2a3964;
 }
-.reglas  {
+
+.reglas {
     margin-bottom: 1rem;
     text-align: center;
 }
@@ -65,16 +70,23 @@
     display: block;
     padding: 0.5rem 1rem;
     color: white;
-    }
-    .navbar-dark .navbar-nav .nav-link {
-        color: rgba(255,255,255,1);
-    }
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 1);
+}
+
+.nav-link:hover {
+    color: #0a58ca !important;
+}
+
 /* estilos de main */
 
-.btn-primary{
+.btn-primary {
     background-color: #2a3964;
-    border:1px solid #2a3964;
+    border: 1px solid #2a3964;
 }
+
 .mission {
     background-size: cover;
     background-attachment: fixed;
@@ -83,14 +95,16 @@
     position: relative;
     padding: 50px 0;
 }
+
 .card-smoke {
-    background-color: rgba(0,0,0,.7);
+    background-color: rgba(0, 0, 0, .7);
     padding: 20px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     color: #fff;
 }
+
 .block-info-mobile {
     background-color: #3a3a3a;
 }
@@ -105,10 +119,13 @@
 .d-md-inline-block.text-decoration-none.py-1.px-2 {
     color: white;
 }
+.d-md-inline-block.text-decoration-none.py-1.px-2:hover {
+    color: #0a58ca;
+}
 
- 
-  /*Paginas grados*/
-  .portada-caption {
+
+/*Paginas grados*/
+.portada-caption {
     position: relative;
     right: 0;
     background-color: #2324258f;
@@ -119,13 +136,16 @@
     color: #fff;
     text-align: center;
 }
+
 .portada-caption h3 {
     font-size: 2rem;
 }
+
 .img-portada {
     width: 100%;
     height: 400px;
 }
+
 .fondo-portada {
     height: 400px;
 }
