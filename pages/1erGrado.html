@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Tag Responsive -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <title>Sala computo</title>
+</head>
+
+<body>
+    <header>
+        <!--logo -->
+        <div class="d-block fondo-azul" style="border-top: 1px solid #9a0000; border-bottom: 1px solid #670000;">
+            <div class="d-none d-lg-block mx-auto col-lg-6">
+                <div class="d-flex justify-content-center">
+                    <div class="container-fluid py-3 d-flex align-items-center justify-content-center">
+
+                        <a href="#">
+                            <img src="/images/logo-jonas-garcia.png" class="logo" alt="">
+
+                        </a>
+                        <p class="texto-logo">Prim. "Jonás García"</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--logo -->
+        <!--menu principal-->
+        <nav class="navbar navbar-expand-lg navbar-dark fondo-rojo">
+            <div class="container-fluid">
+                <a class="navbar-brand d-lg-none" href="#">
+                    <img src="/images/logo-jonas-garcia.png" class="mx-auto" style="height: 4vh; min-height: 1.5em"
+                        alt="" />
+
+                    <p class="texto-logo-movil">Prim. "Jonás García"</p>
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pages/1erGrado.html">1° Grado</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">2° Grado</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">3° Grado</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">4° Grado</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">5° Grado</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">6° Grado</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--menu principal-->
+    </header>
+
+    <main>
+        <!--imagen portada-->
+        <div class="fondo-portada">
+            <img src="/images/matrix2.png" class="img-portada" />
+            <div class="portada-caption">
+                <h2 class="p-2">COMPUTACIÓN</h2>
+                <h2>PRIMER GRADO</h2>
+            </div>
+        </div>
+        <!--/imagen portada-->
+
+
+        <div class="container-fluid animate__animated animate__bounceIn animate__delay-1s">
+
+            <!--formulario-->
+            <div class="col-md-7">
+                <h2 class="pt-5">¿Listo para ser PRO?</h2>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="mb-3 col-md-4">
+                    <label for="inputgrupo" class="form-label fw-bolder">Grupo</label>
+                    <input type="text" class="form-control" id="inputgrupo"
+                        placeholder="Escribe el grupo al que perteneces">
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="mb-3 col-md-4">
+                    <label for="inputpersona1" class="form-label fw-bolder">Primera Persona</label>
+                    <input type="text" class="form-control" id="inputpersona1"
+                        placeholder="Nombre completo de la primer persona del equipo">
+                </div>
+                <div class="mb-3 col-md-4">
+                    <label for="inputpersona2" class="form-label fw-bolder">Segunda Persona</label>
+                    <input type="text" class="form-control" id="inputpersona2"
+                        placeholder="Nombre completo de la segunda persona del equipo">
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-4">
+                <div class="mb-3 col-md-4 ">
+                    <label for="inputcolor" class="form-label fw-bolder"> Escoge el color que más te guste</label>
+                    <br>
+                    <div class="text-center">
+                        <input type="color" id="inputcolor" class="cursor-pointer">
+                    </div>
+                </div>
+
+                <div class="mb-3 col-md-4 ">
+                    <label for="inputanimo" class="form-label fw-bolder">Selecciona el botón de tu estado de ánimo
+                        actual</label>
+                    <br>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-success btn-sm">FELIZ</button>
+                        <button type="button" class="btn btn-warning btn-sm">TRISTE</button>
+                        <button type="button" class="btn btn-info btn-sm">NORMAL</button>
+                        <button type="button" class="btn btn-danger btn-sm">ENOJADO</button>
+                    </div>
+                </div>
+            </div>
+            <!--/formulario-->
+
+            <!-- actividades -->
+            <div class="row">
+                <div class="col-md-12 p-0">
+                    <h2 class="text-uppercase text-center fw-bolder fondo-azul text-white p-3">
+                        Realiza la siguiente actividad</h2>
+
+                    <!--video-->
+                    <p class="pt-3 fw-bold text-center">Observa el siguiente VIDEO para avanzar con tu clase.</p>
+                    <div class="text-center embed-responsive embed-responsive-21by9">
+                        <iframe class="embed-responsive-item " width="420" height="345"
+                            src="https://www.youtube.com/embed/HD_TqGY8D0g?rel=0" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <!--video-->
+
+                <p class="p-5 pt-3 pb-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                    took a galley of type and scrambled it to make a type specimen book. It has survived not only
+                    five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                    It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+                    passages, and more recently with desktop publishing software like Aldus PageMaker including
+                    versions of Lorem Ipsum. <br />
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                    took a galley of type and scrambled it to make a type specimen book. It has survived not only
+                    five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                    It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+                    passages, and more recently with desktop publishing software like Aldus PageMaker including
+                    versions of Lorem Ipsum.
+                </p>
+                <p class="text-uppercase text-center fw-bolder text-danger fs-4 fst-italic p-1">
+                    Si terminas espera indicaciones de tu maestra.</p>
+            </div>
+        </div>
+        <!-- actividades -->
+
+            <!--opinion-->
+            <hr>
+            <div class="row pt-5">
+                <div class="col-md-10 order-md-2 mx-auto text-center pb-5">
+                    <h5 class="text-uppercase text-center fw-bolder">ESCRIBE ALGUNA OPINIÓN SOBRE TU CLASE</h5>
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Comentario" style="height: 100px"></textarea>
+                        <label for="floatingTextarea2">Comentario</label>
+                    </div>
+                    <button class="btn btn-primary text-center mt-2 px-5">Enviar</button>
+                </div>
+            </div>
+            <!--opinion-->
+        </div>
+
+    </main>
+
+    <!-- footer -->
+    <div class="footer">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <hr class="footer__divider">
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="font-size: 0.8rem;line-height: 1.5;">
+            <div class="row py-3 text-center">
+                <div class="col-sm-3 my-auto">
+                    <span class="align-middle">© 2022 Todos los derechos reservados.</span>
+                </div>
+                <div class="col-sm-6 my-auto border-left border-right">
+                    <a class="d-md-inline-block text-decoration-none py-1 px-2" href="/">Inicio</a>
+                    <a class="d-md-inline-block text-decoration-none py-1 px-2" href="./pages/1erGrado.html">1°
+                        Grado</a>
+                </div>
+                <div class="col-sm-3 my-auto">
+                    Tel.:(000) (0) 000<br>
+                    Fax: (000) (0) 000000<br>
+                    Colombia
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
