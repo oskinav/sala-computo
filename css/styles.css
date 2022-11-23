@@ -66,11 +66,14 @@
     padding: 0.5rem 1rem;
     color: white;
     }
-
+    .navbar-dark .navbar-nav .nav-link {
+        color: rgba(255,255,255,1);
+    }
 /* estilos de main */
 
 .btn-primary{
     background-color: #2a3964;
+    border:1px solid #2a3964;
 }
 .mission {
     background-size: cover;
@@ -92,9 +95,8 @@
     background-color: #3a3a3a;
 }
 
+
 /* estilos de footer */
-
-
 .footer {
     background-color: #2a2a2a;
     color: #fff;
@@ -103,3 +105,18 @@
 .d-md-inline-block.text-decoration-none.py-1.px-2 {
     color: white;
 }
+
+/*animacion scroll**/
+.reveal {
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: 1s all ease;
+  }
+  
+  .reveal.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  
