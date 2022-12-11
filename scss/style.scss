@@ -3,6 +3,17 @@
     padding: 0;
 }
 
+/*mixins , colors*/
+$primary-color:#2c2c2c;
+$secondary-color: white;
+$third-color:#0a58ca;
+@mixin felx-stting($align-item, $justify-content) {
+    display:flex;
+    align-items:$align-item;
+    justify-content:$justify-content;
+ }
+ 
+
 /*logo*/
 .logo {
     width: 90px;
@@ -10,14 +21,14 @@
 
 .texto-logo {
     font-size: 40px;
-    color: white;
+    color: $secondary-color;
     font-weight: 600;
     padding: 0px 0px 0px 20px;
 }
 
 .texto-logo-movil {
     font-size: 15px;
-    color: white;
+    color: $secondary-color;
     font-weight: 600;
     float: right;
     padding: 10px 0px 0px 20px;
@@ -40,7 +51,7 @@
     left: 15%;
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
-    color: #fff;
+    color: $secondary-color;
     text-align: left;
 }
 
@@ -69,15 +80,15 @@
 .nav-link {
     display: block;
     padding: 0.5rem 1rem;
-    color: white;
+    color: $secondary-color;
 }
 
 .navbar-dark .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 1);
+    color: $secondary-color;
 }
 
 .nav-link:hover {
-    color: #0a58ca !important;
+    color:$third-color !important;
 }
 
 /* estilos de main */
@@ -87,56 +98,53 @@
     border: 1px solid #2a3964;
 }
 
-.mission {
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: 50% 0;
-    background-repeat: no-repeat;
-    position: relative;
-    padding: 50px 0;
+.mission-vision-container{
+@include felx-stting (center , center);
+ background-image: url('../images/escuela.jpg');
+ background-repeat: no-repeat;
+ background-size: cover;
+ height: 50vh;
+ width:100%;
+ flex-direction: row;
+ flex-wrap: wrap;
+    &.mission-vision-subcontainer{
+       @include felx-stting(center, center);
+       &.card-mision-vision{
+
+       }
+    }
 }
 
-.card-smoke {
-    background-color: rgba(0, 0, 0, .7);
-    padding: 20px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    color: #fff;
-}
 
-.block-info-mobile {
-    background-color: #3a3a3a;
-}
 
 
 /* estilos de footer */
 .footer {
     background-color: #2a2a2a;
-    color: #fff;
+    color: $secondary-color;
 }
 
 .d-md-inline-block.text-decoration-none.py-1.px-2 {
-    color: white;
+    color: $secondary-color;
 }
 .d-md-inline-block.text-decoration-none.py-1.px-2:hover {
-    color: #0a58ca;
+    color: $third-color;
 }
 
 .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .show>.nav-link {
-    color: #2c59d3f7;
+    color: $third-color;
 }
 
 /*Paginas grados*/
 .portada-caption {
     position: relative;
     right: 0;
-    background-color: #2324258f;
+    background-color: $primary-color;
     bottom: 145px;
     left: 0;
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
-    color: #fff;
+    color: $secondary-color;
     text-align: center;
 }
 
@@ -144,13 +152,17 @@
     font-size: 2rem;
 }
 
-.img-portada {
-    width: 100%;
+.fondo-portada {
     height: 400px;
 }
 
-.fondo-portada {
-    height: 400px;
+.img-portada {
+    @extend .fondo-portada;
+    width: 100%;
+}
+
+.texto-video{
+@include felx-stting(center,center);
 }
 
 /* media queries*/
