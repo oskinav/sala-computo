@@ -99,22 +99,31 @@ $third-color:#0a58ca;
 }
 
 .mission-vision-container{
-@include felx-stting (center , center);
+@include felx-stting (center , space-around);
  background-image: url('../images/escuela.jpg');
  background-repeat: no-repeat;
  background-size: cover;
  height: 50vh;
  width:100%;
- flex-direction: row;
  flex-wrap: wrap;
-    &.mission-vision-subcontainer{
+ gap :2em;
+    .mission-vision-subcontainer{
        @include felx-stting(center, center);
-       &.card-mision-vision{
-
-       }
     }
 }
+.card-mision-vision{
+    width: 500px;
+    border-radius: 0.5em;
+    padding: 1em;
+    background-color: rgba(80, 80, 80, 0.671);
+    h3{
+        color: $secondary-color;
+    }
+    p{
+        color: $secondary-color;
+    }
 
+}
 
 
 
@@ -174,4 +183,37 @@ $third-color:#0a58ca;
         display: flex;
         margin: 0 auto;
     }
+
+    /*mian*/
+    .mission-vision-container{
+        @include felx-stting (center , space-around);
+         background-image: url('../images/escuela.jpg');
+         background-repeat: no-repeat;
+         background-size: cover;
+         height: 10%;
+         width:100%;
+         flex-wrap: wrap;
+         gap :2em;
+         padding: 2em;
+            .mission-vision-subcontainer{
+               @include felx-stting(center, center);
+            }
+        }
+        .card-mision-vision{
+            width: 50vw;
+            border-radius: 0.5em;
+            padding: 1em;
+            background-color: rgba(80, 80, 80, 0.671);
+            h3{
+                color: $secondary-color;
+            }
+            p{
+                color: $secondary-color;
+            }
+        
+        }
+        /*paginas grados*/
+        .texto{
+            width: 70%;
+        }
 }

@@ -74,18 +74,28 @@
 .mission-vision-container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   background-image: url("../images/escuela.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 50vh;
   width: 100%;
-  flex-direction: row;
-  flex-wrap: wrap; }
-  .mission-vision-container.mission-vision-subcontainer {
+  flex-wrap: wrap;
+  gap: 2em; }
+  .mission-vision-container .mission-vision-subcontainer {
     display: flex;
     align-items: center;
     justify-content: center; }
+
+.card-mision-vision {
+  width: 500px;
+  border-radius: 0.5em;
+  padding: 1em;
+  background-color: rgba(80, 80, 80, 0.671); }
+  .card-mision-vision h3 {
+    color: white; }
+  .card-mision-vision p {
+    color: white; }
 
 /* estilos de footer */
 .footer {
@@ -133,4 +143,33 @@
   .imgc {
     height: 35vh;
     display: flex;
-    margin: 0 auto; } }
+    margin: 0 auto; }
+  /*mian*/
+  .mission-vision-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-image: url("../images/escuela.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 10%;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 2em;
+    padding: 2em; }
+    .mission-vision-container .mission-vision-subcontainer {
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+  .card-mision-vision {
+    width: 50vw;
+    border-radius: 0.5em;
+    padding: 1em;
+    background-color: rgba(80, 80, 80, 0.671); }
+    .card-mision-vision h3 {
+      color: white; }
+    .card-mision-vision p {
+      color: white; }
+  /*paginas grados*/
+  .texto {
+    width: 70%; } }
