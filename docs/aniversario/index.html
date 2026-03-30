@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuestra historia 💖</title>
+  <style>
+    :root{
+      --rosa1:#f7d7e4;
+      --rosa2:#f4c6d7;
+      --rojo:#d84a3a;
+      --verde:#4caf50;
+      --texto:#b01763;
+      --sombra:0 14px 30px rgba(220, 84, 140, .18);
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      min-height:100%;
+      font-family: "Arial Rounded MT Bold", "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+      color: var(--texto);
+      overflow-x:hidden;
+      background: linear-gradient(180deg, var(--rosa1) 0%, var(--rosa2) 100%);
+    }
+
+    body{
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      padding:28px 18px 42px;
+    }
+
+    .card{
+      width:min(100%, 760px);
+      min-height:92vh;
+      background: transparent;
+      box-shadow:none;
+      border-radius:0;
+      padding:0;
+      position:relative;
+      overflow:visible;
+    }
+
+    .hearts{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+    }
+
+    .heart{
+      position:absolute;
+      font-size:20px;
+      opacity:.18;
+      animation: floatUp linear infinite;
+      filter: drop-shadow(0 6px 10px rgba(255,255,255,.6));
+    }
+
+    @keyframes floatUp{
+      from{ transform: translateY(40px) scale(.82); opacity:0; }
+      10%{ opacity:.22; }
+      to{ transform: translateY(-120vh) scale(1.35); opacity:0; }
+    }
+
+    .wrap, .success{
+      position:relative;
+      z-index:2;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:18px;
+      padding-bottom:24px;
+    }
+
+    .intro{
+      margin:4px 0 0;
+      font-size: clamp(1rem, 3.8vw, 1.22rem);
+      color:#b1256b;
+      max-width:580px;
+      line-height:1.45;
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(2rem, 7vw, 3.85rem);
+      line-height:1.08;
+      color:#d72d84;
+      text-shadow: 0 4px 0 rgba(255,255,255,.28);
+      max-width: 650px;
+    }
+
+    .hint{
+      font-size: .98rem;
+      color:#ad3b6f;
+      margin-top:-8px;
+    }
+
+    .reaction-box{
+      width:min(76vw, 250px);
+      height:min(76vw, 250px);
+      max-width:250px;
+      max-height:250px;
+      border-radius:24px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,.25);
+      box-shadow: var(--sombra);
+      overflow:hidden;
+      user-select:none;
+      padding:10px;
+      position:relative;
+    }
+
+    .reaction-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:18px;
+      display:none;
+    }
+
+    .reaction-fallback{
+      font-size: clamp(3.6rem, 15vw, 6.2rem);
+      line-height:1;
+      display:grid;
+      place-items:center;
+      width:100%;
+      height:100%;
+      border-radius:18px;
+      background: linear-gradient(135deg, rgba(255,255,255,.55), rgba(255,255,255,.12));
+    }
+
+    .anim-bounce{ animation:bounce .55s ease; }
+    .anim-shake{ animation:shake .42s ease; }
+    .anim-wiggle{ animation:wiggle .55s ease; }
+
+    @keyframes bounce{
+      0%{ transform:scale(.88) translateY(6px); opacity:.7; }
+      50%{ transform:scale(1.06) translateY(-8px); opacity:1; }
+      100%{ transform:scale(1) translateY(0); opacity:1; }
+    }
+
+    @keyframes shake{
+      0%{ transform:translateX(0); }
+      20%{ transform:translateX(-9px) rotate(-2deg); }
+      40%{ transform:translateX(8px) rotate(2deg); }
+      60%{ transform:translateX(-8px) rotate(-2deg); }
+      80%{ transform:translateX(7px) rotate(2deg); }
+      100%{ transform:translateX(0); }
+    }
+
+    @keyframes wiggle{
+      0%{ transform: rotate(0deg) scale(.96); }
+      25%{ transform: rotate(-5deg) scale(1.02); }
+      50%{ transform: rotate(5deg) scale(1.05); }
+      75%{ transform: rotate(-3deg) scale(1.01); }
+      100%{ transform: rotate(0deg) scale(1); }
+    }
+
+    .playground{
+      width:min(100%, 620px);
+      min-height: 470px;
+      position:relative;
+      margin-top:2px;
+    }
+
+    .btn{
+      border:none;
+      border-radius:24px;
+      cursor:pointer;
+      transition: width .24s ease, height .24s ease, font-size .24s ease, left .18s ease-out, top .18s ease-out, box-shadow .2s ease;
+      box-shadow: var(--sombra);
+      font-family: inherit;
+      font-weight:700;
+      letter-spacing:.2px;
+      -webkit-tap-highlight-color: transparent;
+      user-select:none;
+    }
+
+    .btn:active{
+      filter: brightness(.98);
+    }
+
+    #yesBtn{
+      position:absolute;
+      left:50%;
+      top:120px;
+      transform:translateX(-50%);
+      width:min(100%, 360px);
+      height:150px;
+      background: var(--verde);
+      color:#fff;
+      font-size: clamp(2.6rem, 11vw, 4.4rem);
+      padding:18px;
+      z-index:1;
+    }
+
+    #noBtn{
+      position:absolute;
+      left:50%;
+      top:310px;
+      transform:translateX(-50%);
+      background: var(--rojo);
+      color:#fff;
+      width:min(100%, 250px);
+      min-height:64px;
+      padding:16px 18px;
+      font-size: clamp(1rem, 3.3vw, 1.16rem);
+      z-index:2;
+    }
+
+    .success{
+      display:none;
+      animation: pop .45s ease;
+    }
+
+    @keyframes pop{
+      from{ transform:scale(.96); opacity:0; }
+      to{ transform:scale(1); opacity:1; }
+    }
+
+    .success h2{
+      margin:4px 0 0;
+      font-size: clamp(2rem, 7.2vw, 3.8rem);
+      color:#d72d84;
+    }
+
+    .success p{
+      margin:0;
+      max-width:620px;
+      font-size: clamp(1rem, 3.8vw, 1.2rem);
+      color:#b1256b;
+      line-height:1.45;
+    }
+
+    .videos-grid{
+      width:min(100%, 700px);
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+    }
+
+    .video-wrap{
+      width:100%;
+      background: rgba(255,255,255,.32);
+      border-radius:28px;
+      padding:14px;
+      box-shadow: var(--sombra);
+    }
+
+    .video-title{
+      margin:0 0 12px;
+      font-size:1rem;
+      color:#a82d69;
+      font-weight:700;
+      text-align:left;
+    }
+
+    video{
+      width:100%;
+      border-radius:18px;
+      background:#000;
+      display:block;
+    }
+
+    .small-note{
+      font-size:.9rem;
+      opacity:.82;
+      color:#9c4d71;
+      max-width:680px;
+    }
+
+    .confetti{
+      position:fixed;
+      top:-20px;
+      width:12px;
+      height:18px;
+      opacity:.9;
+      pointer-events:none;
+      animation: confettiFall linear forwards;
+      z-index:999;
+    }
+
+    @keyframes confettiFall{
+      to{
+        transform: translateY(110vh) rotate(900deg);
+        opacity:1;
+      }
+    }
+
+    @media (min-width: 760px){
+      .videos-grid{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media (max-width: 620px){
+      .playground{ min-height:430px; }
+      #yesBtn{ top:112px; height:138px; }
+      #noBtn{ top:290px; }
+    }
+
+    @media (max-width: 480px){
+      body{ padding:22px 14px 34px; }
+      .card{ padding:0; border-radius:0; }
+      .playground{ min-height:400px; }
+      #yesBtn{
+        width:min(100%, 330px);
+        height:128px;
+        top:110px;
+      }
+      #noBtn{
+        width:min(100%, 235px);
+        top:272px;
+        min-height:58px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="hearts" id="hearts"></div>
+
+    <div class="wrap" id="proposalView">
+      <p class="intro">Antes de seguir con nuestra cita… necesito preguntarte algo muy importante.</p>
+
+      <h1>¿Quieres seguir escribiendo esta historia conmigo para toda la vida? 💖</h1>
+
+      <div class="reaction-box" id="reactionBox" aria-label="Reacción tierna">
+        <img id="reactionImg" src="reaccion-inicial.gif" alt="Reacción tierna">
+        <div id="reactionFallback" class="reaction-fallback">🐱💗</div>
+      </div>
+
+      <div class="hint">Piénsalo con cuidado… aunque yo ya sé cuál es la respuesta correcta 😌</div>
+
+      <div class="playground" id="playground">
+        <button class="btn" id="yesBtn">Sí</button>
+        <button class="btn" id="noBtn">No</button>
+      </div>
+    </div>
+
+    <div class="success" id="successView">
+      <h2>Sabía que dirías que sí 💕</h2>
+      <p>
+        Gracias por este año tan bonito. Eres una de las partes más hermosas de mi vida
+        y quiero seguir construyendo recuerdos contigo, hoy, mañana y siempre. ✨
+      </p>
+
+      <div class="reaction-box" aria-label="Reacción tierna final">
+        <img src="mascota-final.gif" alt="Reacción final feliz" onload="this.style.display='block'; this.parentElement.querySelector('.reaction-fallback').style.display='none';">
+        <div class="reaction-fallback">🥰🎉</div>
+      </div>
+
+      <div class="videos-grid">
+        <div class="video-wrap">
+          <div class="video-title">Video 1 💗</div>
+          <video id="ourVideo1" controls playsinline preload="metadata" loop>
+            <source src="video-1.mp4" type="video/mp4">
+            Tu celular no pudo reproducir este video aquí.
+          </video>
+        </div>
+
+        <div class="video-wrap">
+          <div class="video-title">Video 2 ✨</div>
+          <video id="ourVideo2" controls playsinline preload="metadata" loop>
+            <source src="video-2.mp4" type="video/mp4">
+            Tu celular no pudo reproducir este video aquí.
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const proposalView = document.getElementById('proposalView');
+    const successView = document.getElementById('successView');
+    const ourVideo1 = document.getElementById('ourVideo1');
+    const ourVideo2 = document.getElementById('ourVideo2');
+    const playground = document.getElementById('playground');
+    const reactionImg = document.getElementById('reactionImg');
+    const reactionFallback = document.getElementById('reactionFallback');
+    const reactionBox = document.getElementById('reactionBox');
+
+    const messages = [
+      "¿Muy segura? 🥺",
+      "Piénsalo otra vez 💗",
+      "Ándale, di que sí 😚",
+      "No me rompas el corazón 😭",
+      "Prometo hacerte muy feliz ✨",
+      "Última oportunidad 💔",
+      "La respuesta correcta es sí 😌",
+      "Ya mejor dale en 'Sí' jajaja 💖"
+    ];
+
+    const fallbackReactions = [
+      "🐱💗", "🙈💞", "🐵🥺", "😿💘", "🙊💕", "🐈✨", "🐒💔", "🐱🌷"
+    ];
+
+    const reactionFiles = [
+      "reaccion-1.gif",
+      "reaccion-2.gif",
+      "reaccion-3.gif",
+      "reaccion-4.gif",
+      "reaccion-5.gif",
+      "reaccion-6.gif",
+      "reaccion-7.gif",
+      "reaccion-8.gif"
+    ];
+
+    const animClasses = ["anim-bounce","anim-shake","anim-wiggle"];
+
+    let noCount = 0;
+    let yesWidth = 360;
+    let yesHeight = 150;
+    let yesFont = 70;
+    let evadeMode = false;
+
+    reactionImg.addEventListener('load', () => {
+      reactionImg.style.display = 'block';
+      reactionFallback.style.display = 'none';
+    });
+
+    reactionImg.addEventListener('error', () => {
+      reactionImg.style.display = 'none';
+      reactionFallback.style.display = 'grid';
+    });
+
+    function animateReaction() {
+      const cls = animClasses[noCount % animClasses.length];
+      reactionBox.classList.remove("anim-bounce","anim-shake","anim-wiggle");
+      void reactionBox.offsetWidth;
+      reactionBox.classList.add(cls);
+    }
+
+    function updateReaction() {
+      const idx = noCount % reactionFiles.length;
+      reactionFallback.textContent = fallbackReactions[idx];
+      reactionImg.src = `${reactionFiles[idx]}?v=${Date.now()}`;
+      animateReaction();
+    }
+
+    function clamp(v, min, max) {
+      return Math.max(min, Math.min(max, v));
+    }
+
+    function rectsOverlap(a, b) {
+      return !(
+        a.right < b.left ||
+        a.left > b.right ||
+        a.bottom < b.top ||
+        a.top > b.bottom
+      );
+    }
+
+    function placeNoButtonRandom() {
+      const pg = playground.getBoundingClientRect();
+      const yes = yesBtn.getBoundingClientRect();
+      const noRect = noBtn.getBoundingClientRect();
+
+      const noW = noRect.width || 240;
+      const noH = noRect.height || 64;
+
+      const centerX = pg.width / 2;
+      let attempts = 0;
+      let chosen = null;
+
+      while (attempts < 35 && !chosen) {
+        attempts++;
+        const zone = attempts < 20 ? (Math.random() > 0.5 ? "left" : "right") : "any";
+        let x;
+
+        if (zone === "left") {
+          x = 6 + Math.random() * Math.max(20, centerX - noW - 16);
+        } else if (zone === "right") {
+          const start = Math.min(pg.width - noW - 6, centerX + 40);
+          const range = Math.max(10, pg.width - noW - start - 6);
+          x = start + Math.random() * range;
+        } else {
+          x = 6 + Math.random() * Math.max(10, pg.width - noW - 12);
+        }
+
+        const y = 225 + Math.random() * Math.max(20, pg.height - noH - 235);
+
+        const candidate = {
+          left: x,
+          top: y,
+          right: x + noW,
+          bottom: y + noH
+        };
+
+        const yesCandidate = {
+          left: yes.left - pg.left - 10,
+          top: yes.top - pg.top - 10,
+          right: yes.right - pg.left + 10,
+          bottom: yes.bottom - pg.top + 12
+        };
+
+        if (!rectsOverlap(candidate, yesCandidate)) {
+          chosen = candidate;
+        }
+      }
+
+      if (!chosen) {
+        chosen = {
+          left: clamp(pg.width - noW - 8, 6, pg.width - noW - 6),
+          top: clamp(pg.height - noH - 6, 225, pg.height - noH - 6)
+        };
+      }
+
+      noBtn.style.left = chosen.left + 'px';
+      noBtn.style.top = chosen.top + 'px';
+      noBtn.style.transform = 'none';
+    }
+
+    function growYesButton() {
+      const mobileCapW = window.innerWidth < 500 ? window.innerWidth * 0.84 : 520;
+      yesWidth = Math.min(yesWidth + 34, mobileCapW);
+      yesHeight = Math.min(yesHeight + 18, 300);
+      yesFont = Math.min(yesFont + 8, 124);
+
+      yesBtn.style.width = yesWidth + 'px';
+      yesBtn.style.height = yesHeight + 'px';
+      yesBtn.style.fontSize = yesFont + 'px';
+    }
+
+    function armEvadeMode() {
+      if (evadeMode) return;
+      const rect = noBtn.getBoundingClientRect();
+      noBtn.style.position = 'fixed';
+      noBtn.style.left = rect.left + 'px';
+      noBtn.style.top = rect.top + 'px';
+      noBtn.style.transform = 'none';
+      noBtn.style.zIndex = '10000';
+      evadeMode = true;
+    }
+
+    function moveNoButtonViewport(pointerX = null, pointerY = null) {
+      const rect = noBtn.getBoundingClientRect();
+      const btnW = rect.width || 240;
+      const btnH = rect.height || 64;
+      const pad = 12;
+      const maxX = Math.max(pad, window.innerWidth - btnW - pad);
+      const maxY = Math.max(pad, window.innerHeight - btnH - pad);
+
+      let x = rect.left;
+      let y = rect.top;
+      let tries = 0;
+
+      while (tries < 45) {
+        tries++;
+        const candidateX = pad + Math.random() * Math.max(1, maxX - pad);
+        const candidateY = pad + Math.random() * Math.max(1, maxY - pad);
+
+        if (pointerX === null || pointerY === null) {
+          x = candidateX;
+          y = candidateY;
+          break;
+        }
+
+        const centerX = candidateX + btnW / 2;
+        const centerY = candidateY + btnH / 2;
+        const dx = centerX - pointerX;
+        const dy = centerY - pointerY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance > 140) {
+          x = candidateX;
+          y = candidateY;
+          break;
+        }
+      }
+
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+
+      noBtn.animate([
+        { transform: 'scale(1)' },
+        { transform: 'scale(1.06)' },
+        { transform: 'scale(1)' }
+      ], { duration: 160, iterations: 1 });
+    }
+
+    function escapeNoButton(e) {
+      if (!evadeMode) return;
+      if (e.cancelable) e.preventDefault();
+      e.stopPropagation();
+      const pointX = typeof e.clientX === 'number' ? e.clientX : null;
+      const pointY = typeof e.clientY === 'number' ? e.clientY : null;
+      moveNoButtonViewport(pointX, pointY);
+    }
+
+    noBtn.addEventListener('pointerdown', escapeNoButton);
+    noBtn.addEventListener('mouseenter', (e) => {
+      if (!evadeMode) return;
+      moveNoButtonViewport(e.clientX, e.clientY);
+    });
+
+    noBtn.addEventListener('click', (e) => {
+      if (evadeMode) {
+        if (e.cancelable) e.preventDefault();
+        e.stopPropagation();
+        moveNoButtonViewport(
+          typeof e.clientX === 'number' ? e.clientX : null,
+          typeof e.clientY === 'number' ? e.clientY : null
+        );
+        return;
+      }
+
+      noCount++;
+      const msgIndex = Math.min(noCount - 1, messages.length - 1);
+      noBtn.textContent = messages[msgIndex];
+
+      growYesButton();
+      updateReaction();
+
+      if (noCount < messages.length) {
+        if (noCount >= 2) {
+          placeNoButtonRandom();
+        } else {
+          noBtn.animate([
+            { transform:'translateX(-50%) translateX(0px)' },
+            { transform:'translateX(-50%) translateX(-8px)' },
+            { transform:'translateX(-50%) translateX(8px)' },
+            { transform:'translateX(-50%) translateX(0px)' }
+          ], { duration: 220, iterations: 1 });
+        }
+      } else {
+        armEvadeMode();
+      }
+    });
+
+    yesBtn.addEventListener('click', () => {
+      proposalView.style.display = 'none';
+      successView.style.display = 'flex';
+      launchConfetti(150);
+      ourVideo1.play().catch(() => {});
+      ourVideo2.play().catch(() => {});
+    });
+
+    function launchConfetti(amount = 120) {
+      const colors = ['#ff4d8d', '#f06292', '#ffd54f', '#ffffff', '#ff8a65'];
+      for (let i = 0; i < amount; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti';
+        piece.style.left = Math.random() * 100 + 'vw';
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDuration = (2.8 + Math.random() * 2.2) + 's';
+        piece.style.transform = `translateY(0) rotate(${Math.random()*360}deg)`;
+        piece.style.borderRadius = Math.random() > .5 ? '2px' : '50%';
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(), 5200);
+      }
+    }
+
+    function createFloatingHearts() {
+      const hearts = document.getElementById('hearts');
+      const symbols = ['💗','💖','💕','💞'];
+      for (let i = 0; i < 24; i++) {
+        const span = document.createElement('div');
+        span.className = 'heart';
+        span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        span.style.left = Math.random() * 100 + '%';
+        span.style.bottom = (-10 - Math.random() * 80) + 'px';
+        span.style.animationDuration = (8 + Math.random() * 10) + 's';
+        span.style.animationDelay = (Math.random() * 8) + 's';
+        span.style.fontSize = (16 + Math.random() * 18) + 'px';
+        hearts.appendChild(span);
+      }
+    }
+
+    createFloatingHearts();
+  </script>
+</body>
+</html>
