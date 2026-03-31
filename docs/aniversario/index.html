@@ -95,6 +95,7 @@
       font-size: .98rem;
       color:#ad3b6f;
       margin-top:-8px;
+      margin-bottom:-4px;
     }
 
     .reaction-box{
@@ -161,9 +162,9 @@
 
     .playground{
       width:min(100%, 620px);
-      min-height: 470px;
+      min-height: 340px;
       position:relative;
-      margin-top:2px;
+      margin-top:0;
     }
 
     .btn{
@@ -186,7 +187,7 @@
     #yesBtn{
       position:absolute;
       left:50%;
-      top:120px;
+      top:34px;
       transform:translateX(-50%);
       width:min(100%, 360px);
       height:150px;
@@ -200,7 +201,7 @@
     #noBtn{
       position:absolute;
       left:50%;
-      top:310px;
+      top:220px;
       transform:translateX(-50%);
       background: var(--rojo);
       color:#fff;
@@ -208,7 +209,7 @@
       min-height:64px;
       padding:16px 18px;
       font-size: clamp(1rem, 3.3vw, 1.16rem);
-      z-index:2;
+      z-index:3;
     }
 
     .success{
@@ -265,13 +266,6 @@
       display:block;
     }
 
-    .small-note{
-      font-size:.9rem;
-      opacity:.82;
-      color:#9c4d71;
-      max-width:680px;
-    }
-
     .confetti{
       position:fixed;
       top:-20px;
@@ -297,23 +291,23 @@
     }
 
     @media (max-width: 620px){
-      .playground{ min-height:430px; }
-      #yesBtn{ top:112px; height:138px; }
-      #noBtn{ top:290px; }
+      .playground{ min-height:320px; }
+      #yesBtn{ top:28px; height:138px; }
+      #noBtn{ top:204px; }
     }
 
     @media (max-width: 480px){
       body{ padding:22px 14px 34px; }
       .card{ padding:0; border-radius:0; }
-      .playground{ min-height:400px; }
+      .playground{ min-height:300px; }
       #yesBtn{
         width:min(100%, 330px);
         height:128px;
-        top:110px;
+        top:24px;
       }
       #noBtn{
         width:min(100%, 235px);
-        top:272px;
+        top:188px;
         min-height:58px;
       }
     }
@@ -456,34 +450,49 @@
       );
     }
 
+    function yesNoGoRect(){
+      const yes = yesBtn.getBoundingClientRect();
+      return {
+        left: yes.left - 22,
+        top: yes.top - 22,
+        right: yes.right + 22,
+        bottom: yes.bottom + 22
+      };
+    }
+
     function placeNoButtonRandom() {
       const pg = playground.getBoundingClientRect();
-      const yes = yesBtn.getBoundingClientRect();
       const noRect = noBtn.getBoundingClientRect();
 
       const noW = noRect.width || 240;
       const noH = noRect.height || 64;
-
       const centerX = pg.width / 2;
+      const safeYes = {
+        left: yesBtn.offsetLeft - 12,
+        top: yesBtn.offsetTop - 12,
+        right: yesBtn.offsetLeft + yesBtn.offsetWidth + 12,
+        bottom: yesBtn.offsetTop + yesBtn.offsetHeight + 12
+      };
+
       let attempts = 0;
       let chosen = null;
 
-      while (attempts < 35 && !chosen) {
+      while (attempts < 45 && !chosen) {
         attempts++;
-        const zone = attempts < 20 ? (Math.random() > 0.5 ? "left" : "right") : "any";
+        const zone = attempts < 24 ? (Math.random() > 0.5 ? "left" : "right") : "any";
         let x;
 
         if (zone === "left") {
-          x = 6 + Math.random() * Math.max(20, centerX - noW - 16);
+          x = 6 + Math.random() * Math.max(20, centerX - noW - 18);
         } else if (zone === "right") {
-          const start = Math.min(pg.width - noW - 6, centerX + 40);
+          const start = Math.min(pg.width - noW - 6, centerX + 44);
           const range = Math.max(10, pg.width - noW - start - 6);
           x = start + Math.random() * range;
         } else {
           x = 6 + Math.random() * Math.max(10, pg.width - noW - 12);
         }
 
-        const y = 225 + Math.random() * Math.max(20, pg.height - noH - 235);
+        const y = 190 + Math.random() * Math.max(20, pg.height - noH - 196);
 
         const candidate = {
           left: x,
@@ -492,14 +501,7 @@
           bottom: y + noH
         };
 
-        const yesCandidate = {
-          left: yes.left - pg.left - 10,
-          top: yes.top - pg.top - 10,
-          right: yes.right - pg.left + 10,
-          bottom: yes.bottom - pg.top + 12
-        };
-
-        if (!rectsOverlap(candidate, yesCandidate)) {
+        if (!rectsOverlap(candidate, safeYes)) {
           chosen = candidate;
         }
       }
@@ -507,7 +509,7 @@
       if (!chosen) {
         chosen = {
           left: clamp(pg.width - noW - 8, 6, pg.width - noW - 6),
-          top: clamp(pg.height - noH - 6, 225, pg.height - noH - 6)
+          top: clamp(pg.height - noH - 6, 190, pg.height - noH - 6)
         };
       }
 
@@ -545,15 +547,26 @@
       const pad = 12;
       const maxX = Math.max(pad, window.innerWidth - btnW - pad);
       const maxY = Math.max(pad, window.innerHeight - btnH - pad);
+      const safeYes = yesNoGoRect();
 
       let x = rect.left;
       let y = rect.top;
       let tries = 0;
 
-      while (tries < 45) {
+      while (tries < 70) {
         tries++;
         const candidateX = pad + Math.random() * Math.max(1, maxX - pad);
         const candidateY = pad + Math.random() * Math.max(1, maxY - pad);
+        const candidate = {
+          left: candidateX,
+          top: candidateY,
+          right: candidateX + btnW,
+          bottom: candidateY + btnH
+        };
+
+        if (rectsOverlap(candidate, safeYes)) {
+          continue;
+        }
 
         if (pointerX === null || pointerY === null) {
           x = candidateX;
@@ -630,6 +643,7 @@
         }
       } else {
         armEvadeMode();
+        moveNoButtonViewport();
       }
     });
 
